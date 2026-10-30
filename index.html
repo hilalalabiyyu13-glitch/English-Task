@@ -2,625 +2,363 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hilal Al Abiyyu | Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-:root{
- --bg:#EDF0F7;
- --card:#fff;
- --ink:#121A33;
- --muted:#4D587A;
- --blue:#2F54EB;
- --lemon:#F2F75B;
- --line:#CBD3E6;
-}
-
-*{box-sizing:border-box;margin:0}
-
-html,body{height:100%}
-
-body{
- font-family:'Figtree',system-ui,sans-serif;
- background:var(--bg);
- color:var(--ink);
- line-height:1.5;
- font-size:14.5px;
-}
-
-h1,h2,h3{
- font-family:'Bricolage Grotesque','Figtree',sans-serif;
- line-height:1.1;
- letter-spacing:-.02em;
-}
-
-a{color:inherit}
-
-:focus-visible{
- outline:3px solid var(--blue);
- outline-offset:2px;
-}
-
-.app{
- height:100%;
- overflow:auto;
- padding:16px;
- display:grid;
- gap:12px;
- grid-template-columns:1.05fr 1fr;
- grid-template-rows:minmax(0,1fr) auto auto auto;
- grid-template-areas:
- "hero about"
- "hero skills"
- "contact edu"
- "contact projects";
-}
-
-.box{
- background:var(--card);
- border:1px solid var(--line);
- border-radius:12px;
- padding:16px 18px;
- min-height:0;
-}
-
-.box h2{
- font-size:17px;
- margin-bottom:8px;
-}
-
-/* HERO */
-
-.hero{
- grid-area:hero;
- display:flex;
- flex-direction:column;
- justify-content:center;
- padding:24px 28px;
-}
-
-.label{
- font-size:12px;
- color:var(--blue);
- font-weight:600;
- margin-bottom:4px;
-}
-
-.frame{
- position:relative;
- border:2px solid var(--blue);
- padding:26px 24px 28px;
-}
-
-.frame i{
- position:absolute;
- width:11px;
- height:11px;
- background:#fff;
- border:2px solid var(--blue);
-}
-
-.frame i:nth-child(1){top:-6px;left:-6px}
-.frame i:nth-child(2){top:-6px;right:-6px}
-.frame i:nth-child(3){bottom:-6px;left:-6px}
-.frame i:nth-child(4){bottom:-6px;right:-6px}
-
-h1{
- font-size:clamp(34px,5vw,58px);
- font-weight:800;
-}
-
-h1 mark{
- background:var(--lemon);
- padding:0 .1em;
-}
-
-.role{
- margin-top:10px;
- font-weight:600;
- color:var(--blue);
- font-size:16px;
-}
-
-.tag{
- margin-top:4px;
- color:var(--muted);
-}
-
-.intro{
- margin-top:14px;
- max-width:48ch;
-}
-
-.cursor{
- position:absolute;
- right:-6px;
- bottom:-30px;
- background:var(--ink);
- color:#fff;
- font-size:12px;
- padding:2px 9px;
- border-radius:0 11px 11px 11px;
- animation:nudge 1s .4s ease-out both;
-}
-
-@keyframes nudge{
- from{transform:translate(-60px,-34px);opacity:0}
- to{transform:none;opacity:1}
-}
-
-.btns{
- display:flex;
- gap:8px;
- flex-wrap:wrap;
- margin-top:16px;
-}
-
-.btn{
- display:inline-block;
- padding:8px 16px;
- border-radius:8px;
- font-weight:600;
- font-size:14px;
- text-decoration:none;
- border:2px solid var(--ink);
-}
-
-.btn.main{
- background:var(--ink);
- color:#fff;
-}
-
-.btn.main:hover{
- background:var(--blue);
- border-color:var(--blue);
-}
-
-.btn.ghost:hover{background:var(--lemon)}
-
-.interests{margin-top:30px}
-
-/* PANELS */
-
-.about{
- grid-area:about;
- overflow:auto;
-}
-
-.skills{
- grid-area:skills;
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:12px;
-}
-
-.skills .box{padding:14px 16px}
-
-.edu{grid-area:edu}
-
-.edu p+p{margin-top:6px}
-
-.edu small{
- color:var(--muted);
- display:block;
-}
-
-.tags{
- display:flex;
- flex-wrap:wrap;
- gap:6px;
-}
-
-.tags span{
- background:var(--bg);
- border:1px solid var(--line);
- border-radius:99px;
- padding:2px 11px;
- font-size:13px;
- font-weight:500;
-}
-
-.tags.code span{
- background:var(--ink);
- color:#fff;
- border-color:var(--ink);
-}
-
-/* PROJECTS */
-
-.projects{grid-area:projects}
-
-.pgrid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:10px;
-}
-
-.pc{
- border:1px solid var(--line);
- border-radius:8px;
- padding:10px;
- text-decoration:none;
- display:block;
- transition:border-color .2s,transform .2s;
-}
-
-.pc:hover{
- border-color:var(--blue);
- transform:translateY(-2px);
-}
-
-.thumb{
- height:65px;
- border-radius:5px;
- margin-bottom:8px;
- position:relative;
- overflow:hidden;
- display:flex;
- align-items:center;
- justify-content:center;
- background:var(--ink);
- color:#fff;
-}
-
-.thumb b{
- font-family:'Bricolage Grotesque',sans-serif;
- font-size:17px;
- letter-spacing:1px;
- position:relative;
- z-index:1;
-}
-
-.thumb:after{
- content:"";
- position:absolute;
- left:0;
- bottom:0;
- width:100%;
- height:5px;
- background:var(--blue);
-}
-
-.thumb.campus{
- background:linear-gradient(135deg,#121A33,#2F54EB);
-}
-
-.thumb.laundry{
- background:linear-gradient(135deg,#121A33,#596A9A);
-}
-
-.thumb.nnqua{
- background:linear-gradient(135deg,#121A33,#287C80);
-}
-
-.pc b.project-name{
- display:block;
- font-size:13.5px;
- margin-bottom:3px;
-}
-
-.pc span{
- font-size:12px;
- color:var(--muted);
- display:block;
-}
-
-.psub{
- color:var(--muted);
- font-size:13px;
- margin:-4px 0 8px;
-}
-
-/* CONTACT */
-
-.contact{
- grid-area:contact;
- background:var(--ink);
- color:#fff;
- border-color:var(--ink);
- display:flex;
- flex-direction:column;
- justify-content:center;
-}
-
-.contact h2{font-size:22px}
-
-.contact p{
- color:#C9D1EC;
- margin-bottom:6px;
- max-width:42ch;
-}
-
-.contact .btn{
- border-color:#fff;
- color:#fff;
-}
-
-.contact .btn.main{
- background:var(--lemon);
- color:var(--ink);
- border-color:var(--lemon);
-}
-
-.contact .btn:hover{
- background:var(--blue);
- border-color:var(--blue);
- color:#fff;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:860px),(max-height:620px){
-
- html,body{height:auto}
-
- .app{
-  height:auto;
-  overflow:visible;
-  grid-template-columns:1fr;
-  grid-template-rows:none;
-  grid-template-areas:
-  "hero"
-  "about"
-  "skills"
-  "edu"
-  "projects"
-  "contact";
- }
-
- .skills{grid-template-columns:1fr}
-
- .pgrid{grid-template-columns:1fr}
-
- .cursor{display:none}
-
- .interests{margin-top:16px}
-}
-
-@media(prefers-reduced-motion:reduce){
- .cursor{animation:none}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Hilal Al Abiyyu, Informatics Student, UI/UX Designer, and Front-End Developer.">
+    <title>Hilal Al Abiyyu | Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-<main class="app">
 
-<!-- HOME / HERO -->
+    <header class="navbar">
+        <a href="#home" class="logo">HA<span>.</span></a>
+
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <a href="#contact" class="nav-button">Let's Talk <span>↗</span></a>
+    </header>
+
+    <main class="container">
+
+        <!-- HERO SECTION -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="availability">
+                    <span class="status-dot"></span>
+                    Available for Collaboration
+                </div>
+
+                <p class="eyebrow">HELLO, I'M</p>
+
+                <h1>Hilal Al<br><span>Abiyyu.</span></h1>
+
+                <h2>Informatics Student &<br>UI/UX Designer <span class="blue-text">/</span> Front-End Developer</h2>
+
+                <p class="hero-description">
+                    I enjoy creating digital experiences by combining
+                    thoughtful design with functional and user-friendly
+                    interfaces.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#projects" class="primary-button">Explore My Work <span>↗</span></a>
+                    <a href="#about" class="secondary-button">More About Me</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="visual-card">
+                    <div class="visual-top">
+                        <span>MY CREATIVE SPACE</span>
+                        <span class="visual-icon">✳</span>
+                    </div>
+
+                    <div class="visual-center">
+                        <div class="circle circle-one"></div>
+                        <div class="circle circle-two"></div>
+                        <div class="circle circle-three"></div>
+                        <span class="visual-letter">H.</span>
+                    </div>
+
+                    <div class="visual-bottom">
+                        <span>DESIGN</span>
+                        <span>DEVELOPMENT</span>
+                        <span>CREATIVITY</span>
+                    </div>
+                </div>
+
+                <div class="floating-tag tag-one">✦ UI/UX Design</div>
+                <div class="floating-tag tag-two">{"</>"} Front-End</div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section class="section" id="about">
+            <div class="section-heading">
+                <p class="eyebrow">GET TO KNOW ME</p>
+                <h2>About <span>Me.</span></h2>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card about-description">
+                    <span class="card-number">01 / ABOUT</span>
+                    <h3>Turning ideas into meaningful digital experiences.</h3>
+
+                    <p>
+                        I'm Hilal Al Abiyyu, an Informatics student at
+                        Universitas Ahmad Dahlan. I have an interest in
+                        UI/UX Design and Front-End Development.
+                    </p>
+
+                    <p>
+                        I enjoy exploring how design and technology work
+                        together to create digital products that are
+                        visually appealing, functional, and easy to use.
+                    </p>
+                </div>
+
+                <div class="about-card personal-info">
+                    <span class="card-number">02 / PERSONAL INFO</span>
+
+                    <div class="info-item">
+                        <span>Name</span>
+                        <strong>Hilal Al Abiyyu</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>Education</span>
+                        <strong>Universitas Ahmad Dahlan</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>Major</span>
+                        <strong>Informatics</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>Location</span>
+                        <strong>Yogyakarta, Indonesia</strong>
+                    </div>
+
+                    <div class="info-item">
+                        <span>Focus</span>
+                        <strong>UI/UX & Front-End</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section class="section" id="skills">
+            <div class="section-heading">
+                <p class="eyebrow">WHAT I CAN DO</p>
+                <h2>Skills & <span>Tools.</span></h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">✳</div>
+                    <h3>UI/UX Design</h3>
+                    <p>Designing intuitive and user-friendly digital experiences.</p>
+
+                    <div class="skill-tags">
+                        <span>Wireframing</span>
+                        <span>Prototyping</span>
+                        <span>UI Design</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon code-icon">&lt;/&gt;</div>
+                    <h3>Front-End Development</h3>
+                    <p>Building responsive and interactive website interfaces.</p>
+
+                    <div class="skill-tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">✎</div>
+                    <h3>Design Tools</h3>
+                    <p>Using creative tools to develop and communicate ideas.</p>
+
+                    <div class="skill-tags">
+                        <span>Figma</span>
+                        <span>Canva</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <section class="section" id="education">
+            <div class="section-heading">
+                <p class="eyebrow">MY BACKGROUND</p>
+                <h2>Education<span>.</span></h2>
+            </div>
+
+            <div class="education-list">
+                <div class="education-item">
+                    <div class="education-year">2023 — Present</div>
+                    <div class="education-detail">
+                        <h3>Universitas Ahmad Dahlan</h3>
+                        <p>Bachelor's Degree in Informatics</p>
+                        <span>Faculty of Industrial Technology · Yogyakarta</span>
+                    </div>
+                    <div class="education-mark">↗</div>
+                </div>
+
+                <div class="education-item">
+                    <div class="education-year">Previous</div>
+                    <div class="education-detail">
+                        <h3>SMAN 1 Leuwiliang</h3>
+                        <p>Senior High School</p>
+                        <span>Bogor, Indonesia</span>
+                    </div>
+                    <div class="education-mark">↗</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section class="section" id="projects">
+            <div class="section-heading">
+                <p class="eyebrow">SOME THINGS I'VE WORKED ON</p>
+                <h2>Selected <span>Projects.</span></h2>
+            </div>
+
+            <div class="projects-grid">
+
+                <article class="project-card">
+                    <div class="project-visual campus-visual">
+                        <span class="project-label">01 / UI/UX DESIGN</span>
+                        <div class="project-placeholder">
+                            <span class="project-symbol">⌕</span>
+                            <h3>Campus<br>Connect.</h3>
+                            <p>Lost & Found Platform</p>
+                        </div>
+                    </div>
+
+                    <div class="project-info">
+                        <div>
+                            <h3>Campus-Connect</h3>
+                            <p>
+                                A campus Lost & Found platform designed to
+                                help students report and find missing items.
+                            </p>
+                        </div>
+
+                        <div class="project-meta">
+                            <span>UI/UX Design</span>
+                            <span>React · TypeScript</span>
+                        </div>
+
+                        <a href="https://github.com/hilalalabiyyu13-glitch/campus-connect"
+                           target="_blank" rel="noopener noreferrer"
+                           class="project-link">
+                            View Repository ↗
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-visual laundry-visual">
+                        <span class="project-label">02 / UI/UX & FRONT-END</span>
+                        <div class="project-placeholder">
+                            <span class="project-symbol">◈</span>
+                            <h3>Laundry<br>Management.</h3>
+                            <p>Point of Sales System</p>
+                        </div>
+                    </div>
+
+                    <div class="project-info">
+                        <div>
+                            <h3>POS Laundry</h3>
+                            <p>
+                                A laundry management system with customer
+                                management and point of sales features.
+                            </p>
+                        </div>
+
+                        <div class="project-meta">
+                            <span>UI/UX Design</span>
+                            <span>Customer CRUD</span>
+                        </div>
+
+                        <a href="https://github.com/nayDJ/pos-laundry"
+                           target="_blank" rel="noopener noreferrer"
+                           class="project-link">
+                            View Repository ↗
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card project-wide">
+                    <div class="project-image">
+                        <img src="assets/nnqua.png" alt="NNQUA project documentation">
+                    </div>
+
+                    <div class="project-info">
+                        <div>
+                            <span class="card-number">03 / UI/UX DESIGN</span>
+                            <h3>NNQUA Business Management</h3>
+                            <p>
+                                A web-based management system for a water
+                                refill depot, designed to support order
+                                management, stock monitoring, and business
+                                operations.
+                            </p>
+                        </div>
+
+                        <div class="project-meta">
+                            <span>UI/UX Design</span>
+                            <span>System Development</span>
+                        </div>
+
+                        <a href="https://github.com/hilalalabiyyu13-glitch/NNQUA"
+                           target="_blank" rel="noopener noreferrer"
+                           class="project-link">
+                            View Repository ↗
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section class="contact-section" id="contact">
+            <div class="contact-content">
+                <p class="eyebrow">HAVE A PROJECT IN MIND?</p>
+                <h2>Let's create<br>something <span>great.</span></h2>
+                <p>
+                    I'm always open to learning, collaborating,
+                    and exploring new opportunities.
+                </p>
+
+                <a href="mailto:hilalalabiyyu13@gmail.com" class="primary-button">
+                    Get In Touch ↗
+                </a>
+            </div>
+
+            <div class="contact-links">
+                <a href="mailto:hilalalabiyyu13@gmail.com">
+                    Email <span>↗</span>
+                </a>
+
+                <a href="https://github.com/hilalalabiyyu13-glitch"
+                   target="_blank" rel="noopener noreferrer">
+                    GitHub <span>↗</span>
+                </a>
+
+                <a href="https://www.linkedin.com/"
+                   target="_blank" rel="noopener noreferrer">
+                    LinkedIn <span>↗</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <a href="#home" class="logo">HA<span>.</span></a>
+        <p>Designed & Built by Hilal Al Abiyyu</p>
+        <p>© 2026 All Rights Reserved.</p>
+    </footer>
 
-<header class="box hero">
-
- <div class="label">Informatics Student / Portfolio</div>
-
- <div class="frame">
-  <i></i><i></i><i></i><i></i>
-
-  <h1>Hi, I'm <mark>Hilal Al Abiyyu</mark></h1>
-
-  <p class="role">
-   UI/UX Designer &amp; Front-End Developer
-  </p>
-
-  <p class="tag">
-   Designing Digital Experiences, Building Meaningful Websites.
-  </p>
-
-  <p class="intro">
-   Hello! I'm an Informatics student at Universitas Ahmad Dahlan
-   with a strong interest in UI/UX Design and Front-End Development.
-   I enjoy exploring creative ideas and building digital experiences
-   that combine functionality with visual appeal.
-  </p>
-
-  <div class="btns">
-   <a class="btn main" href="#projects">View my projects</a>
-   <a class="btn ghost" href="#contact">Contact me</a>
-  </div>
-
-  <span class="cursor">Hilal Al Abiyyu</span>
- </div>
-
- <div class="interests">
-  <h2>My interests</h2>
-  <div class="tags">
-   <span>UI &amp; UX Design</span>
-   <span>Front-End Development</span>
-   <span>Creative Problem Solving</span>
-   <span>Digital Product Design</span>
-  </div>
- </div>
-
-</header>
-
-
-<!-- ABOUT ME -->
-
-<section class="box about">
-
- <h2>About me</h2>
-
- <p>
-  I am an Informatics student at Universitas Ahmad Dahlan
-  who is passionate about technology, design, and digital creativity.
-  I enjoy exploring how design and technology work together
-  to create better digital experiences.
- </p>
-
- <p style="margin-top:8px">
-  My main interests are designing user-friendly interfaces
-  and developing website front-ends. I enjoy learning new
-  technologies, working on projects, and continuously improving
-  my skills to create useful and visually appealing digital products.
- </p>
-
-</section>
-
-
-<!-- SKILLS -->
-
-<section class="skills">
-
- <div class="box">
-
-  <h2>Design skills</h2>
-
-  <div class="tags">
-   <span>Figma</span>
-   <span>Canva</span>
-   <span>Wireframing</span>
-   <span>UI Design</span>
-   <span>Prototyping</span>
-  </div>
-
- </div>
-
- <div class="box">
-
-  <h2>Front-end skills</h2>
-
-  <div class="tags code">
-   <span>HTML</span>
-   <span>CSS</span>
-   <span>JavaScript</span>
-   <span>Responsive Design (Learning)</span>
-  </div>
-
- </div>
-
-</section>
-
-
-<!-- EDUCATION -->
-
-<section class="box edu">
-
- <h2>Education</h2>
-
- <p>
-  <b>Universitas Ahmad Dahlan</b>
-  <small>Informatics — Undergraduate Student</small>
- </p>
-
- <p>
-  <b>SMAN 1 Leuwiliang</b>
-  <small>Senior High School</small>
- </p>
-
-</section>
-
-
-<!-- PROJECTS -->
-
-<section class="box projects" id="projects">
-
- <h2>Projects</h2>
-
- <p class="psub">
-  A collection of projects that represent my learning journey,
-  creativity, and technical skills.
- </p>
-
- <div class="pgrid">
-
-  <!-- CAMPUS CONNECT -->
-
-  <a class="pc"
-     href="https://github.com/hilalalabiyyu13-glitch/campus-connect"
-     target="_blank"
-     rel="noopener">
-
-   <div class="thumb campus">
-    <b>Campus-Connect</b>
-   </div>
-
-   <b class="project-name">Campus-Connect</b>
-
-   <span>UI/UX Designer</span>
-
-   <span>Lost &amp; Found Platform</span>
-
-  </a>
-
-
-  <!-- POS LAUNDRY -->
-
-  <a class="pc"
-     href="https://github.com/nayDJ/pos-laundry"
-     target="_blank"
-     rel="noopener">
-
-   <div class="thumb laundry">
-    <b>POS Laundry</b>
-   </div>
-
-   <b class="project-name">POS Laundry</b>
-
-   <span>UI/UX &amp; Front-End</span>
-
-   <span>Customer CRUD</span>
-
-  </a>
-
-
-  <!-- NNQUA -->
-
-  <a class="pc"
-     href="https://github.com/hilalalabiyyu13-glitch/NNQUA"
-     target="_blank"
-     rel="noopener">
-
-   <div class="thumb nnqua">
-    <b>NNQUA</b>
-   </div>
-
-   <b class="project-name">NNQUA</b>
-
-   <span>UI/UX Designer</span>
-
-   <span>Business Management System</span>
-
-  </a>
-
- </div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section class="box contact" id="contact">
-
- <h2>Let's work together</h2>
-
- <p>
-  Interested in working together or discussing creative ideas?
-  Feel free to reach out!
- </p>
-
- <p>hilalalabiyyu13@gmail.com</p>
-
- <div class="btns">
-
-  <a class="btn main"
-     href="mailto:hilalalabiyyu13@gmail.com"
-     target="_top">
-   Email me
-  </a>
-
-  <a class="btn"
-     href="https://github.com/hilalalabiyyu13-glitch"
-     target="_blank"
-     rel="noopener">
-   GitHub
-  </a>
-
- </div>
-
-</section>
-
-</main>
 </body>
 </html>

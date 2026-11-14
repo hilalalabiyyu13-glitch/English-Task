@@ -1028,3 +1028,16 @@ section {
     border: none;
     display: block;
 }
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    border: 5px solid white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
